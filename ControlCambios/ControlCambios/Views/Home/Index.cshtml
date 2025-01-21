@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Menú";
+}
+<h1>@ViewBag.usuario</h1>
+
+<div class="d-flex align-items-center justify-content-start">
+    <div class="text-center d-flex flex-column align-items-start" style="height: 50%;">
+        <style>
+            .btn {
+                width: 250px;
+                margin-top: 10px;
+            }
+        </style>
+        <a class="btn btn-primary btn-lg" style="background-color: #C84F24; color: #fff;" asp-area="" asp-controller="Login" asp-action="Logout">Cerrar Sesión</a>
+        <a class="btn btn-primary btn-lg" style="background-color: #1E297A; color: #fff;" asp-area="" asp-controller="ControlCambio" asp-action="Index">Control de Cambio</a>
+        <a class="btn btn-primary btn-lg" style="background-color: #1E297A; color: #fff;" asp-area="" asp-controller="VersionesBaseDatos" asp-action="Index">Versiones</a>
+        <a class="btn btn-primary btn-lg" style="background-color: #1E297A; color: #fff;" asp-area="" asp-controller="BaseDatos" asp-action="Index">Base de Datos</a>
+        <a class="btn btn-primary btn-lg" style="background-color: #1E297A; color: #fff;" asp-area="" asp-controller="FiltrarControlCambio" asp-action="Index">Filtrar Control de Cambio</a>
+        <a class="btn btn-primary btn-lg" style="background-color: #1E297A; color: #fff;" asp-area="" asp-controller="Usuario" asp-action="Index">Usuarios</a>
+    </div>
+    <div class="text-center d-flex flex-column align-items-end" style="height: 50%;">
+        <img src="~/imagenes/imagen.jpg" style="height:70%; width:70%;" />
+    </div>
+</div>
+

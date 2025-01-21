@@ -1,0 +1,150 @@
+﻿@model IEnumerable<ControlCambios.Models.TablaControlCambio>
+@{
+    ViewData["Title"] = "Control de Cambio";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Control de Cambio</h4>
+    <div class="text-end">
+        <a class="btn btn-success " style="background-color: #90ff00; color: #000000;" asp-area="" asp-action="Create">Crear Control Cambio</a>
+        <a class="btn btn-warning " asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<input type="checkbox" id="chkIdControlcambio" onchange="toggleColumn('chkIdControlcambio')"> ID
+<input type="checkbox" id="chkNombreCambio" checked onchange="toggleColumn('chkNombreCambio')"> Cambio
+<input type="checkbox" id="chkCategoria" checked onchange="toggleColumn('chkCategoria')"> Categoria
+<input type="checkbox" id="chkIdBaseDatos" onchange="toggleColumn('chkIdBaseDatos')"> ID Base Datos
+<input type="checkbox" id="chkNombre" checked onchange="toggleColumn('chkNombre')"> Base de Datos
+<input type="checkbox" id="chkNombreVersion" checked onchange="toggleColumn('chkNombreVersion')"> Nombre Versión
+<input type="checkbox" id="chkCambiosSolicitados" checked onchange="toggleColumn('chkCambiosSolicitados')"> Cambios Solicitados
+<input type="checkbox" id="chkCambiosRealizados" checked onchange="toggleColumn('chkCambiosRealizados')"> Cambios Realizados
+<input type="checkbox" id="chkIdUsuario" onchange="toggleColumn('chkIdUsuario')"> ID Usuario
+<input type="checkbox" id="chkFecha" checked onchange="toggleColumn('chkFecha')"> Fecha
+
+
+<table class="table" id="controlCambioTable">
+    <thead>
+        <tr>
+            <th data-column="IdControlcambio">
+                @Html.DisplayNameFor(model => model.IdControlcambio)
+            </th>
+            <th data-column="NombreCambio">
+                @Html.DisplayNameFor(model => model.NombreCambio)
+            </th>
+            <th data-column="Categoria">
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th data-column="IdBaseDatos">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+            </th>
+            <th data-column="Nombre">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+            </th>
+            <th data-column="NombreVersion">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.NombreVersion)
+            </th>
+            <th data-column="CambiosSolicitados">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.CambiosSolicitados)
+            </th>
+            <th data-column="CambiosRealizados">
+                @Html.DisplayNameFor(model => model.CambiosRealizados)
+            </th>
+            <th data-column="IdUsuario">
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th data-column="Fecha">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdControlcambio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCambio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.NombreVersion)
+                </td>
+                <td>
+                    <div style="max-width: 300px; overflow-y: auto;">
+                        @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.CambiosSolicitados)
+                    </div>
+                </td>
+                <td>
+                    <div style="max-width: 300px; overflow-y: auto;">
+                        @Html.DisplayFor(modelItem => item.CambiosRealizados)
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                    @Html.ActionLink("Detalle", "Details", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function hideColumnsBasedOnCheckboxes() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox) {
+                var column = checkbox.id.replace('chk', '');
+                var table = document.getElementById('controlCambioTable');
+                var headers = Array.from(table.querySelectorAll('th[data-column]'));
+                var index = headers.findIndex(th => th.getAttribute('data-column') === column);
+                if (index === -1) return;
+                var isVisible = checkbox.checked;
+                Array.from(table.rows).forEach(row => {
+                    var cell = row.cells[index];
+                    if (cell) {
+                        cell.style.display = isVisible ? '' : 'none';
+                    }
+                });
+            });
+        }
+
+        hideColumnsBasedOnCheckboxes();
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                hideColumnsBasedOnCheckboxes();
+            });
+        });
+    });
+</script>
+
+

@@ -1,0 +1,317 @@
+﻿@model IEnumerable<ControlCambios.Models.TablaControlCambio>
+@{
+    ViewData["Title"] = "Control de Cambio";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Control de Cambio</h4>
+    <div class="text-end">
+        <a class="btn btn-warning " asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<input type="checkbox" id="chkIdControlcambio" onchange="toggleColumn('chkIdControlcambio')"> ID
+<input type="checkbox" id="chkNombreCambio" checked onchange="toggleColumn('chkNombreCambio')"> Cambio
+<input type="checkbox" id="chkCategoria" checked onchange="toggleColumn('chkCategoria')"> Categoria
+<input type="checkbox" id="chkIdBaseDatos" onchange="toggleColumn('chkIdBaseDatos')"> ID Base Datos
+<input type="checkbox" id="chkNombre" checked onchange="toggleColumn('chkNombre')"> Base de Datos
+<input type="checkbox" id="chkNombreVersion" checked onchange="toggleColumn('chkNombreVersion')"> Nombre Versión
+<input type="checkbox" id="chkCambiosSolicitados" checked onchange="toggleColumn('chkCambiosSolicitados')"> Cambios Solicitados
+<input type="checkbox" id="chkCambiosRealizados" checked onchange="toggleColumn('chkCambiosRealizados')"> Cambios Realizados
+<input type="checkbox" id="chkIdUsuario" onchange="toggleColumn('chkIdUsuario')"> ID Usuario
+<input type="checkbox" id="chkFecha" checked onchange="toggleColumn('chkFecha')"> Fecha
+
+<div class="form-group">
+    <label asp="Model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos" class="control-label"></label>
+    @Html.DropDownList("ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos", ViewBag.BaseDatos as SelectList, "Seleccione la Base de Datos", new { @class = "form-control", id = "baseDatosDropdown" })
+</div>
+
+
+<div class="form-group">
+    <label asp="NombreVersion" class="control-label"></label>
+    <select id="NombreVersion" name="ObjetoVersionesBaseDatos.NombreVersion" class="form-control">
+        <option value="-1">Seleccione la Versión</option>
+    </select>
+</div>
+
+<div style="margin-top:10px;">
+    <button class="btn btn-primary btn-filter-version" data-categoria="TODOS">TODOS</button>
+    <button class="btn btn-primary btn-filter-version" data-categoria="PROCEDIMIENTOS">PROCEDIMIENTOS</button>
+    <button class="btn btn-primary btn-filter-version" data-categoria="FUNCIONES">FUNCIONES</button>
+    <button class="btn btn-primary btn-filter-version" data-categoria="VISTAS">VISTAS</button>
+    <button class="btn btn-primary btn-filter-version" data-categoria="TABLAS">TABLAS</button>
+    <button class="btn btn-primary btn-filter-version" data-categoria="TRIGGERS">TRIGGERS</button>
+</div>
+
+@* <div style="margin-top:10px;">
+    <button class="btn btn-primary btn-filter" data-categoria="TODOS">TODOS</button>
+    <button class="btn btn-primary btn-filter" data-categoria="PROCEDIMIENTOS">PROCEDIMIENTOS</button>
+    <button class="btn btn-primary btn-filter" data-categoria="FUNCIONES">FUNCIONES</button>
+    <button class="btn btn-primary btn-filter" data-categoria="VISTAS">VISTAS</button>
+    <button class="btn btn-primary btn-filter" data-categoria="TABLAS">TABLAS</button>
+    <button class="btn btn-primary btn-filter" data-categoria="TRIGGERS">TRIGGERS</button>
+</div> *@
+
+<table class="table" id="controlCambioTable">
+    <thead>
+        <tr>
+            <th data-column="IdControlcambio">
+                @Html.DisplayNameFor(model => model.IdControlcambio)
+            </th>
+            <th data-column="NombreCambio">
+                @Html.DisplayNameFor(model => model.NombreCambio)
+            </th>
+            <th data-column="Categoria">
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th data-column="IdBaseDatos">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+            </th>
+            <th data-column="Nombre">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+            </th>
+            <th data-column="NombreVersion">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.NombreVersion)
+            </th>
+            <th data-column="CambiosSolicitados">
+                @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.CambiosSolicitados)
+            </th>
+            <th data-column="CambiosRealizados">
+                @Html.DisplayNameFor(model => model.CambiosRealizados)
+            </th>
+            <th data-column="IdUsuario">
+                @Html.DisplayNameFor(model => model.IdUsuario)
+            </th>
+            <th data-column="Fecha">
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-categoria="@item.Categoria" data-idbasedatos="@item.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos" data-version="@item.ObjetoVersionesBaseDatos.NombreVersion">
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdControlcambio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCambio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.NombreVersion)
+                </td>
+                <td>
+                    <div style="max-width: 300px; overflow-y: auto;">
+                        @Html.DisplayFor(modelItem => item.ObjetoVersionesBaseDatos.CambiosSolicitados)
+                    </div>
+                </td>
+                <td>
+                    <div style="max-width: 300px; overflow-y: auto;">
+                        @Html.DisplayFor(modelItem => item.CambiosRealizados)
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdUsuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                    @Html.ActionLink("Detalle", "Details", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                    @Html.ActionLink("Eliminar", "Delete", new {  id=item.IdControlcambio  },  new { @class = "btn btn-primary" , style = "background-color: #d1d1d1; color: #000000; width: 100px;" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        function hideColumnsBasedOnCheckboxes() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(function (checkbox) {
+                var column = checkbox.id.replace('chk', '');
+                var table = document.getElementById('controlCambioTable');
+                var headers = Array.from(table.querySelectorAll('th[data-column]'));
+                var index = headers.findIndex(th => th.getAttribute('data-column') === column);
+                if (index === -1) return;
+                var isVisible = checkbox.checked;
+                Array.from(table.rows).forEach(row => {
+                    var cell = row.cells[index];
+                    if (cell) {
+                        cell.style.display = isVisible ? '' : 'none';
+                    }
+                });
+            });
+        }
+
+        hideColumnsBasedOnCheckboxes();
+
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                hideColumnsBasedOnCheckboxes();
+            });
+        });
+    });
+</script>
+
+
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#baseDatosDropdown').change(function () {
+                var IdBaseDatos = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("ObtenerVersiones", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (versiones) {
+                        var versionDropdown = $('#NombreVersion');
+                        versionDropdown.empty();
+                        versionDropdown.append($('<option>').text("Seleccione la Versión").attr('value', "-1"));
+                        $.each(versiones, function (index, version) {
+                            versionDropdown.append($('<option>').text(version.text).attr('value', version.value));
+                        });
+                    },
+                    error: function () {
+                        alert('Error al cargar las versiones.');
+                    }
+                });
+
+
+
+                //*******************/
+                var NombreVersion = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("ObtenerCambios", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos, NombreVersion: NombreVersion },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (cambios) {
+                        var CambiosSolicitados = $('#CambiosSolicitados');
+                        CambiosSolicitados.val(cambios);
+                    },
+                    error: function () {
+                        alert('Error al cargar los cambios.');
+                    }
+                });
+
+                //*******************/
+
+
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#NombreVersion').change(function () {
+                var IdBaseDatos = $('#baseDatosDropdown').val();
+                var NombreVersion = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("ObtenerCambios", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos, NombreVersion: NombreVersion },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (cambios) {
+                        var CambiosSolicitados = $('#CambiosSolicitados');
+                        CambiosSolicitados.val(cambios);
+                    },
+                    error: function () {
+                        alert('Error al cargar los cambios.');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script>
+        // $(document).ready(function () {
+        //     function filterTableByCategoryAndBase(categoria, idBasedatos) {
+        //         var table = $('#controlCambioTable');
+        //         table.find('tbody tr').each(function () {
+        //             var row = $(this);
+        //             var categoriaRow = row.data('categoria');
+        //             var idBasedatosRow = row.data('idbasedatos');
+
+        //             if ((categoriaRow === categoria || categoria === 'TODOS') && (idBasedatosRow.toString() === idBasedatos.toString() || idBasedatos.toString() === '')) {
+        //                 row.show();
+        //             } else {
+        //                 row.hide();
+        //             }
+        //         });
+        //     }
+
+        //     $('.btn-filter').click(function () {
+        //         var categoria = $(this).data('categoria');
+        //         var idBasedatos = $('#baseDatosDropdown').val().trim();
+        //         filterTableByCategoryAndBase(categoria, idBasedatos);
+        //     });
+
+        // });
+
+
+        /*****************************************/
+        $(document).ready(function () {
+            function filterTableByCategoryBaseAndVersion(categoria, idBasedatos, version) {
+                var table = $('#controlCambioTable');
+                table.find('tbody tr').each(function () {
+                    var row = $(this);
+                    var categoriaRow = row.data('categoria');
+                    var idBasedatosRow = row.data('idbasedatos');
+                    var versionRow = row.data('version');
+
+                    if ((categoriaRow === categoria || categoria === 'TODOS') &&
+                        (idBasedatosRow.toString() === idBasedatos.toString() || idBasedatos.toString() === '') &&
+                        (versionRow.toString() === version.toString() || version.toString() === '-1')) {
+                        row.show();
+                    } else {
+                        row.hide();
+                    }
+                });
+            }
+
+            $('.btn-filter-version').click(function () {
+                var categoria = $(this).data('categoria');
+                var idBasedatos = $('#baseDatosDropdown').val().trim();
+                var version = $('#NombreVersion').val().trim();
+                filterTableByCategoryBaseAndVersion(categoria, idBasedatos, version);
+            });
+        });
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,79 @@
+﻿@model ControlCambios.Models.TablaUsuario
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Usuarios</h4>
+    <div class="text-end">
+        <a class="btn btn-success" asp-area="" asp-action="Index">Consultar Usuarios</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <input asp-for="IdUsuario" class="form-control" />
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreUsuario" class="control-label"></label>
+                <input asp-for="NombreUsuario" class="form-control" />
+                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefono" class="control-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorreoElectronico" class="control-label"></label>
+                <input asp-for="CorreoElectronico" class="form-control" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contrasenia" class="control-label"></label>
+                <input asp-for="Contrasenia" class="form-control" />
+                <span asp-validation-for="Contrasenia" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Rol" class="control-label"></label>
+                @Html.DropDownList("Rol", new List<SelectListItem>
+                {
+                new SelectListItem { Text = "Administrador", Value = "Administrador" },
+                new SelectListItem { Text = "Usuario", Value = "Usuario" }
+                })
+                <span asp-validation-for="Rol" class="text-danger"></span>
+
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Autorizado" /> @Html.DisplayNameFor(model => model.Autorizado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" style="background-color: #90ff00; color: #000000; margin-top:10px;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

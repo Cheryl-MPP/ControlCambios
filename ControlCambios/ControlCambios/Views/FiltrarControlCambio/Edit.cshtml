@@ -1,0 +1,187 @@
+﻿@model ControlCambios.Models.TablaControlCambio
+
+@{
+    ViewData["Title"] = "Control de Cambio";
+}
+
+<style>
+    .disabled-dropdown {
+        pointer-events: none;
+        background-color: #f0f0f0;
+    }
+</style>
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Control de Cambio</h4>
+    <div class="text-end">
+        <a class="btn btn-success" asp-area="" asp-action="Index">Control de Cambio</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdControlcambio" class="control-label"></label>
+                <input asp-for="IdControlcambio" class="form-control" readonly />
+                <span asp-validation-for="IdControlcambio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos" class="control-label"></label>
+                @* @Html.DropDownList("ObjetoBaseDatos.IdBaseDatos", ViewBag.BaseDatos as SelectList, "Seleccione la Base de Datos", new { @class = "form-control disabled-dropdown", @id = "baseDatosDropdown" }) *@
+                @Html.DropDownList("ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos", ViewBag.BaseDatos as SelectList, "Seleccione la Base de Datos", new { @class = "form-control disabled-dropdown", @id = "baseDatosDropdown" })
+                <span asp-validation-for="ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ObjetoVersionesBaseDatos.NombreVersion" class="control-label"></label>
+                <input asp-for="ObjetoVersionesBaseDatos.NombreVersion" class="form-control" readonly />
+                @*  <select id="NombreVersion" name="ObjetoVersionesBaseDatos.NombreVersion" class="form-control">
+                <option value="">Seleccione la Versión</option>
+                </select> *@
+                <span asp-validation-for="ObjetoVersionesBaseDatos.NombreVersion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NombreCambio" class="control-label"></label>
+                <input asp-for="NombreCambio" class="form-control" />
+                <span asp-validation-for="NombreCambio" class="text-danger"></span>
+            </div>
+
+            <br />
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                @Html.DropDownList("Categoria", new List<SelectListItem>
+                {
+                new SelectListItem { Text = "PROCEDIMIENTOS", Value = "PROCEDIMIENTOS" },
+                new SelectListItem { Text = "FUNCIONES", Value = "FUNCIONES" },
+                new SelectListItem { Text = "VISTAS", Value = "VISTAS" },
+                new SelectListItem { Text = "TABLAS", Value = "TABLAS" },
+                new SelectListItem { Text = "TRIGGERS", Value = "TRIGGERS" }
+
+                })
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+
+            </div>
+            <br />
+
+            <div class="form-group">
+                <label asp-for="IdUsuario" class="control-label"></label>
+                <input asp-for="IdUsuario" class="form-control" readonly />
+                <span asp-validation-for="IdUsuario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input type="datetime" asp-for="Fecha" readonly value="@DateTime.Now.ToString("yyyy-MM-dd hh:mm tt")" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ObjetoVersionesBaseDatos.CambiosSolicitados" class="control-label"></label>
+                <textarea id="CambiosSolicitados" name="CambiosSolicitados" asp-for="ObjetoVersionesBaseDatos.CambiosSolicitados" readonly class="form-control" style="width: 100%; height: 10em;"></textarea>
+                <span asp-validation-for="ObjetoVersionesBaseDatos.CambiosSolicitados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CambiosRealizados" class="control-label"></label>
+                <textarea asp-for="CambiosRealizados" class="form-control" style="width: 100%; height: 10em;"></textarea>
+                <span asp-validation-for="CambiosRealizados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" style="background-color: #90ff00; color: #000000; margin-top:10px;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#baseDatosDropdown').change(function () {
+                var IdBaseDatos = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("ObtenerVersiones", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (versiones) {
+                        var versionDropdown = $('#NombreVersion');
+                        versionDropdown.empty();
+                        versionDropdown.append($('<option>').text("Seleccione la Versión").attr('value', "-1"));
+                        $.each(versiones, function (index, version) {
+                            versionDropdown.append($('<option>').text(version.text).attr('value', version.value));
+                        });
+                    },
+                    error: function () {
+                        alert('Error al cargar las versiones.');
+                    }
+                });
+
+
+
+                //*******************/
+                var NombreVersion = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("ObtenerCambios", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos, NombreVersion: NombreVersion },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (cambios) {
+                        var CambiosSolicitados = $('#CambiosSolicitados');
+                        CambiosSolicitados.val(cambios);
+                    },
+                    error: function () {
+                        alert('Error al cargar los cambios.');
+                    }
+                });
+
+                //*******************/
+
+
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#NombreVersion').change(function () {
+                var IdBaseDatos = $('#baseDatosDropdown').val();
+                var NombreVersion = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("ObtenerCambios", "ControlCambio")',
+                    type: 'POST',
+                    data: { IdBaseDatos: IdBaseDatos, NombreVersion: NombreVersion },
+                    dataType: 'json',
+                    headers: { 'X-CSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val() },
+                    success: function (cambios) {
+                        var CambiosSolicitados = $('#CambiosSolicitados');
+                        CambiosSolicitados.val(cambios);
+                    },
+                    error: function () {
+                        alert('Error al cargar los cambios.');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

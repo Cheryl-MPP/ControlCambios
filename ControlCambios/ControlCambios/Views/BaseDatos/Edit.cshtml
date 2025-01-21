@@ -1,0 +1,52 @@
+﻿@model ControlCambios.Models.TablaBaseDatos
+
+@{
+    ViewData["Title"] = "Base de Datos";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Base de Datos</h4>
+    <div class="text-end">
+        <a class="btn btn-success" asp-area="" asp-action="Index">Consultar Base de Datos</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdBaseDatos" class="control-label"></label>
+                <input asp-for="IdBaseDatos" readonly class="form-control" />
+                <span asp-validation-for="IdBaseDatos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Activa" /> @Html.DisplayNameFor(model => model.Activa)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary " style="background-color: #90ff00; color: #000000; margin-top:10px;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

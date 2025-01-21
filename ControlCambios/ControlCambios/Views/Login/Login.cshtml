@@ -1,0 +1,75 @@
+﻿@model ControlCambios.Models.Login
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+
+
+<div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top:10px">
+
+    <div style="width: 450px; height:120px; background: linear-gradient(to right, #00C4F0 0%, #020025 50%, #020025 100%); position: relative;">
+        <div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);">
+            <h5 style=" text-align:center; color:white">DIALCOM COSTA RICA</h5>
+            <h6 style="text-align:center; color:#D6D8FF; position: relative;">
+                Iniciar sesión.
+                <img src="~/imagenes/minilogo.png" alt="Imagen" style="position: absolute; top: 30px; left: 50%; transform: translateX(-50%); max-width: 80px; height: 80px;" />
+            </h6>
+        </div>
+    </div>
+
+
+    <div style="width: 450px; height:400px; display: flex; justify-content: center; background:white;">
+
+        <br />
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div style="width:400px; margin-top:50px;">
+                <label asp-for="Usuario" class="control-label"></label>
+                <input asp-for="Usuario" class="form-control" />
+                <span asp-validation-for="Usuario" class="text-danger"></span>
+            </div>
+            <div style="width:400px; margin-top:50px;">
+                <label asp-for="Contrasenia" class="control-label"></label>
+                <input type="password" asp-for="Contrasenia" class="form-control" />
+                <span asp-validation-for="Contrasenia" class="text-danger"></span>
+            </div>
+            <br />
+            <div style="width:400px; margin-top:50px;">
+                <input style="background:#020025" type="submit" value="Iniciar Sesión" class="btn btn-danger btn-lg w-100" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+@section Scripts {
+
+
+    @if (ViewBag.cabecera != null)
+    {
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: '@ViewBag.cabecera',
+                text: '@Html.Raw(ViewBag.mensaje)',
+                showConfirmButton: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+            @*window.location.href = '@Url.Action("Login", "Login")';*@
+                                                                } else if (result.isDenied) {
+            @*window.location.href = '@Url.Action("Login", "Login")';*@
+                                                                }
+            })
+        </script>
+    }
+
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

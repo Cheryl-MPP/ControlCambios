@@ -1,0 +1,88 @@
+﻿@model ControlCambios.Models.TablaControlCambio
+
+@{
+    ViewData["Title"] = "Control de Cambio";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Control de Cambio</h4>
+    <div class="text-end">
+        <a class="btn btn-success" asp-area="" asp-action="Index">Control de Cambio</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdControlcambio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdControlcambio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NombreCambio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NombreCambio)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.IdBaseDatos)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ObjetoVersionesBaseDatos.ObjetoBaseDatos.Nombre)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.NombreVersion)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ObjetoVersionesBaseDatos.NombreVersion)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ObjetoVersionesBaseDatos.CambiosSolicitados)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ObjetoVersionesBaseDatos.CambiosSolicitados)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CambiosRealizados)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CambiosRealizados)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Editar", "Edit", new {  id=Model.IdControlcambio  },  new { @class = "btn btn-primary " , style = "background-color: #90ff00; color: #000000; width: 200px;" })
+</div>

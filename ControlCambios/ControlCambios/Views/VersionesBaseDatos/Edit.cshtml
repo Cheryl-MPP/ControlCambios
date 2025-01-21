@@ -1,0 +1,60 @@
+﻿@model ControlCambios.Models.TablaVersionesBaseDatos
+@{
+    ViewData["Title"] = "Versiones";
+}
+
+<style>
+    .btn {
+        width: 200px;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-start">Versiones</h4>
+    <div class="text-end">
+        <a class="btn btn-success" asp-area="" asp-action="Index">Consultar Versiones</a>
+        <a class="btn btn-warning" asp-area="" asp-controller="Home" asp-action="Index">Menú Principal</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ObjetoBaseDatos.IdBaseDatos" class="control-label"></label>
+                @Html.DropDownList("ObjetoBaseDatos.IdBaseDatos", ViewBag.BaseDatos as SelectList, "Seleccione la Base de Datos", new { @class = "form-control disabled-dropdown", @id = "baseDatosDropdown" })
+@*                 @Html.DropDownList("ObjetoBaseDatos.IdBaseDatos", ViewBag.BaseDatos as SelectList, "Seleccione la Base de Datos", new { @class = "form-control"  }) *@
+                <span asp-validation-for="ObjetoBaseDatos.IdBaseDatos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreVersion" class="control-label"></label>
+                <input asp-for="NombreVersion" readonly class="form-control" />
+                <span asp-validation-for="NombreVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CambiosSolicitados" class="control-label"></label>
+                <textarea asp-for="CambiosSolicitados" class="form-control" style="width: 100%; height: 10em;"></textarea>
+                <span asp-validation-for="CambiosSolicitados" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary " style="background-color: #90ff00; color: #000000; margin-top:10px;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<style>
+    .disabled-dropdown {
+        pointer-events: none;
+        background-color: #f0f0f0;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

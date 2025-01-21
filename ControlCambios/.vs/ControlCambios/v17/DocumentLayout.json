@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|c:\\users\\chery\\onedrive\\desktop\\tesis-2\\tesis11\\controlcambios\\controlcambios\\views\\controlcambio\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|solutionrelative:controlcambios\\views\\controlcambio\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|c:\\users\\chery\\onedrive\\desktop\\tesis-2\\tesis11\\controlcambios\\controlcambios\\views\\controlcambio\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|solutionrelative:controlcambios\\views\\controlcambio\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|c:\\users\\chery\\onedrive\\desktop\\tesis-2\\tesis11\\controlcambios\\controlcambios\\views\\login\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|solutionrelative:controlcambios\\views\\login\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|c:\\users\\chery\\onedrive\\desktop\\tesis-2\\tesis11\\controlcambios\\controlcambios\\controllers\\basedatoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|solutionrelative:controlcambios\\controllers\\basedatoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|c:\\users\\chery\\onedrive\\desktop\\tesis-2\\tesis11\\controlcambios\\controlcambios\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{FD66CD22-8863-4D77-9FF1-E56FBA0A407B}|ControlCambios\\ControlCambios.csproj|solutionrelative:controlcambios\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\ControlCambio\\Index.cshtml",
+              "RelativeDocumentMoniker": "ControlCambios\\Views\\ControlCambio\\Index.cshtml",
+              "ToolTip": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\ControlCambio\\Index.cshtml",
+              "RelativeToolTip": "ControlCambios\\Views\\ControlCambio\\Index.cshtml",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-28T01:32:02.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\ControlCambio\\Create.cshtml",
+              "RelativeDocumentMoniker": "ControlCambios\\Views\\ControlCambio\\Create.cshtml",
+              "ToolTip": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\ControlCambio\\Create.cshtml",
+              "RelativeToolTip": "ControlCambios\\Views\\ControlCambio\\Create.cshtml",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-28T01:22:15.162Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\Login\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "ControlCambios\\Views\\Login\\AccessDenied.cshtml",
+              "ToolTip": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Views\\Login\\AccessDenied.cshtml",
+              "RelativeToolTip": "ControlCambios\\Views\\Login\\AccessDenied.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-06-25T20:26:40.356Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseDatosController.cs",
+              "DocumentMoniker": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Controllers\\BaseDatosController.cs",
+              "RelativeDocumentMoniker": "ControlCambios\\Controllers\\BaseDatosController.cs",
+              "ToolTip": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\Controllers\\BaseDatosController.cs",
+              "RelativeToolTip": "ControlCambios\\Controllers\\BaseDatosController.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T20:25:55.097Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\appsettings.json",
+              "RelativeDocumentMoniker": "ControlCambios\\appsettings.json",
+              "ToolTip": "C:\\Users\\chery\\OneDrive\\Desktop\\tesis-2\\Tesis11\\ControlCambios\\ControlCambios\\appsettings.json",
+              "RelativeToolTip": "ControlCambios\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-14T00:34:04.898Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
